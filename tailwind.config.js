@@ -15,6 +15,6 @@ export default {
 		},
 	],
 	daisyui: {
-		themes: ["halloween"],
+		themes: ["forest"],
 	},
 };

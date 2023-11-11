@@ -5,3 +5,23 @@
 body {
 	font-family: "Raleway Variable", sans-serif;
 }
+
+/* width */
+::-webkit-scrollbar {
+	@apply w-2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	@apply rounded bg-primary/5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	@apply rounded bg-primary/40;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-primary/60;
+}
