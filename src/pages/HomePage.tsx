@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Package } from "@/components/Package";
 import { IconSearch } from "@tabler/icons-react";
 import { SearchResult, searchPackages } from "query-registry";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 export function HomePage() {
 	const [npmPackages, setNpmPackages] = useState<SearchResult[]>([]);
@@ -24,7 +24,8 @@ export function HomePage() {
 		loadPackages();
 	}, []);
 
-	async function search() {
+	async function search(e: FormEvent) {
+		e.preventDefault();
 		loadPackages(searchString);
 	}
 
@@ -33,7 +34,10 @@ export function HomePage() {
 			<Navbar />
 			<main className="grid grid-cols-6 px-2 py-4">
 				<div className="col-span-4">
-					<div className="mb-4 flex w-full items-center gap-2">
+					<form
+						className="mb-4 flex w-full items-center gap-2"
+						onSubmit={e => search(e)}
+					>
 						<div className="flex flex-grow items-center gap-2 rounded p-2 outline-1 outline-primary/50 has-[input:focus]:bg-base-100 has-[input:focus]:outline">
 							<IconSearch
 								className="text-base-content"
@@ -50,11 +54,11 @@ export function HomePage() {
 
 						<button
 							className="btn btn-primary btn-sm"
-							onClick={async () => await search()}
+							type="submit"
 						>
 							Search
 						</button>
-					</div>
+					</form>
 
 					{loading ? (
 						<p>Loading ...</p>
