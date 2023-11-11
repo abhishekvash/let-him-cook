@@ -1,11 +1,20 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from "daisyui";
+
 export default {
-	content: ["./index.html", "./src/**/*.tsx"],
+	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		extend: {},
 	},
-	plugins: [[require("daisyui")]],
+	plugins: [
+		daisyui,
+		function ({ matchVariant }) {
+			matchVariant("has", value => {
+				return `&:has(${value})`;
+			});
+		},
+	],
 	daisyui: {
-		themes: ["fantasy"],
+		themes: ["halloween"],
 	},
 };
