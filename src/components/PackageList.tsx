@@ -1,7 +1,11 @@
+import { PotActions, PotContext } from "@/contexts/PotProvider";
 import { IconBrandGoogleAnalytics, IconBrandNpm } from "@tabler/icons-react";
 import { SearchResult } from "query-registry";
+import { useContext } from "react";
 
 function Package({ npmPackage }: { npmPackage: SearchResult }) {
+	const { changeRecipe } = useContext(PotContext)!;
+
 	function convertToPercentage(score: number) {
 		return (score * 100).toFixed(0);
 	}
@@ -46,10 +50,26 @@ function Package({ npmPackage }: { npmPackage: SearchResult }) {
 					</a>
 				</div>
 				<div className="ml-auto flex gap-2">
-					<button className="btn btn-primary btn-xs rounded font-bold">
+					<button
+						className="btn btn-primary btn-xs rounded font-bold"
+						onClick={() =>
+							changeRecipe({
+								type: PotActions.ADD_AS_DEPENDENCY,
+								payload: npmPackage.package.name,
+							})
+						}
+					>
 						Add as dependency
 					</button>
-					<button className="btn btn-primary btn-outline btn-xs rounded font-bold">
+					<button
+						className="btn btn-primary btn-outline btn-xs rounded font-bold"
+						onClick={() =>
+							changeRecipe({
+								type: PotActions.ADD_AS_DEV_DEPENDENCY,
+								payload: npmPackage.package.name,
+							})
+						}
+					>
 						Add as dev dependency
 					</button>
 				</div>
