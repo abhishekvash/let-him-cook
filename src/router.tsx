@@ -1,10 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { HomePage } from "./pages/HomePage";
+import { SearchPage } from "./pages/SearchPage";
+import { fetchPackages } from "./api/packages";
 
 export const router = createBrowserRouter([
 	{
-		path: "/",
-		element: <HomePage />,
+		path: "/search",
+		element: <SearchPage />,
+		loader: async ({ request }) => {
+			const searchTerm = new URL(request.url).searchParams.get("q");
+			if (searchTerm) {
+				return await fetchPackages(searchTerm);
+			}
+			return null;
+		},
 	},
 ]);

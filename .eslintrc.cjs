@@ -34,10 +34,7 @@ module.exports = {
 	},
 	plugins: ["react", "react-hooks", "react-refresh", "prettier"],
 	rules: {
-		"react-refresh/only-export-components": [
-			"warn",
-			{ allowConstantExport: true },
-		],
+		"react-refresh/only-export-components": 0,
 		"prettier/prettier": "error",
 	},
 };
