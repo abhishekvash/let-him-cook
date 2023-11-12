@@ -26,6 +26,7 @@ export function SearchBar() {
 					placeholder="Search For Packages"
 					value={searchString}
 					onChange={e => setSearchString(e.target.value)}
+					required
 					className="w-30 bg-transparent outline-none md:w-auto"
 				/>
 			</div>

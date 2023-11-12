@@ -3,7 +3,13 @@ import { IconBrandGoogleAnalytics, IconBrandNpm } from "@tabler/icons-react";
 import { SearchResult } from "query-registry";
 import { useContext } from "react";
 
-function Package({ npmPackage }: { npmPackage: SearchResult }) {
+function Package({
+	npmPackage,
+	isAdded,
+}: {
+	npmPackage: SearchResult;
+	isAdded: boolean;
+}) {
 	const { changeRecipe } = useContext(PotContext)!;
 
 	function convertToPercentage(score: number) {
@@ -11,7 +17,11 @@ function Package({ npmPackage }: { npmPackage: SearchResult }) {
 	}
 
 	return (
-		<div className="package w-full rounded bg-primary/10 p-2">
+		<div
+			className={`package w-full rounded bg-primary/10 p-2 ${
+				isAdded ? "outline outline-1 outline-primary" : ""
+			}`}
+		>
 			<div className="mb-2 flex items-center justify-between">
 				<span className="text-2xl text-white">
 					{npmPackage.package.name}
@@ -79,12 +89,19 @@ function Package({ npmPackage }: { npmPackage: SearchResult }) {
 }
 
 export function PackageList({ packages }: { packages: SearchResult[] }) {
+	const { pot } = useContext(PotContext)!;
+
+	function isAdded(name: string) {
+		return pot.dependencies.has(name) || pot.devDependencies.has(name);
+	}
+
 	return (
-		<div className="flex max-h-[80vh] flex-col gap-4 overflow-y-scroll">
+		<div className="flex max-h-[80vh] flex-col gap-4 overflow-y-scroll p-2">
 			{packages.map(npmPackage => {
 				return (
 					<Package
 						npmPackage={npmPackage}
+						isAdded={isAdded(npmPackage.package.name)}
 						key={npmPackage.package.name}
 					/>
 				);
