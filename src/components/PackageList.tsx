@@ -1,7 +1,7 @@
 import { IconBrandGoogleAnalytics, IconBrandNpm } from "@tabler/icons-react";
 import { SearchResult } from "query-registry";
 
-export function Package({ npmPackage }: { npmPackage: SearchResult }) {
+function Package({ npmPackage }: { npmPackage: SearchResult }) {
 	function convertToPercentage(score: number) {
 		return (score * 100).toFixed(0);
 	}
@@ -46,10 +46,10 @@ export function Package({ npmPackage }: { npmPackage: SearchResult }) {
 					</a>
 				</div>
 				<div className="ml-auto flex gap-2">
-					<button className="btn btn-primary btn-xs font-bold">
+					<button className="btn btn-primary btn-xs rounded font-bold">
 						Add as dependency
 					</button>
-					<button className="btn btn-primary btn-outline btn-xs font-bold">
+					<button className="btn btn-primary btn-outline btn-xs rounded font-bold">
 						Add as dev dependency
 					</button>
 				</div>
@@ -57,3 +57,19 @@ export function Package({ npmPackage }: { npmPackage: SearchResult }) {
 		</div>
 	);
 }
+
+export function PackageList({ packages }: { packages: SearchResult[] }) {
+	return (
+		<div className="flex max-h-[80vh] flex-col gap-4 overflow-y-scroll">
+			{packages.map(npmPackage => {
+				return (
+					<Package
+						npmPackage={npmPackage}
+						key={npmPackage.package.name}
+					/>
+				);
+			})}
+		</div>
+	);
+}
+export default PackageList;

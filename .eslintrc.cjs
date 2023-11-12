@@ -36,5 +36,6 @@ module.exports = {
 	rules: {
 		"react-refresh/only-export-components": 0,
 		"prettier/prettier": "error",
+		"@typescript-eslint/consistent-type-definitions": 0,
 	},
 };

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, defer } from "react-router-dom";
 
 import { SearchPage } from "./pages/SearchPage";
 import { fetchPackages } from "./api/packages";
@@ -9,10 +9,11 @@ export const router = createBrowserRouter([
 		element: <SearchPage />,
 		loader: async ({ request }) => {
 			const searchTerm = new URL(request.url).searchParams.get("q");
-			if (searchTerm) {
-				return await fetchPackages(searchTerm);
-			}
-			return null;
+			if (!searchTerm) return null;
+			const packages = fetchPackages(searchTerm);
+			return defer({
+				packages,
+			});
 		},
 	},
 ]);
