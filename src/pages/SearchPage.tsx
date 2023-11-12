@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { PackageList } from "@/components/PackageList";
+import { Pot } from "@/components/Pot";
 import { SearchBar } from "@/components/SearchBar";
 import { SearchResult } from "query-registry";
 import { Suspense } from "react";
@@ -25,6 +26,9 @@ export function SearchPage() {
 							}
 						</Await>
 					</Suspense>
+				</div>
+				<div className="col-span-2">
+					<Pot />
 				</div>
 			</main>
 		</>
