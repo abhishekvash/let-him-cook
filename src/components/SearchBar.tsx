@@ -10,15 +10,16 @@ export function SearchBar() {
 
 	async function search(e: FormEvent) {
 		e.preventDefault();
+		if (!searchString) return;
 		setSearchParam(`q=${searchString}`);
 	}
 
 	return (
 		<form
-			className="mb-4 flex w-full items-center gap-2"
+			className="mb-8 flex w-full items-center gap-2"
 			onSubmit={e => search(e)}
 		>
-			<div className="flex flex-grow items-center gap-2 rounded px-2 py-1 outline-1 outline-primary/50 has-[input:focus]:bg-base-100 has-[input:focus]:outline">
+			<div className="flex flex-grow items-center gap-2 rounded border-b border-primary/30 px-2 py-1 outline-1 outline-primary/50 has-[input:focus]:bg-base-100 has-[input:focus]:outline">
 				<IconSearch className="text-base-content" size={16} />
 				<input
 					type="text"

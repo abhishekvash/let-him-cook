@@ -11,7 +11,7 @@ export function SearchPage() {
 	return (
 		<>
 			<Navbar />
-			<main className="grid grid-cols-6 px-2 py-2">
+			<main className="grid grid-cols-6 gap-x-4 px-2 py-4">
 				<div className="col-span-4">
 					<SearchBar />
 					<Suspense fallback={<div>Loading...</div>}>
