@@ -1,7 +1,8 @@
 import { PotActions, PotContext } from "@/contexts/PotProvider";
-import { IconSoup } from "@tabler/icons-react";
+import { IconNotebook } from "@tabler/icons-react";
 import { useContext } from "react";
 import { IngredientsList } from "./IngredientsList";
+import { Link } from "react-router-dom";
 
 export function Pot() {
 	const {
@@ -30,10 +31,10 @@ export function Pot() {
 
 	return (
 		<div className="flex w-full flex-col items-center">
-			<IconSoup size={120} stroke={1} className="mb-8 text-primary" />
+			<IconNotebook size={120} stroke={1} className="mb-6 text-primary" />
 			{dependencies.length === 0 && devDependencies.length === 0 ? (
 				<>
-					<p>Oh. That is one sad empty pot :(</p>
+					<p>Oh. That is one sad page :(</p>
 					<p>Add some packages and get cooking!</p>
 				</>
 			) : (
@@ -52,6 +53,11 @@ export function Pot() {
 							removeFn={removeDevDependency}
 						/>
 					)}
+					<Link to="/create-recipe" className="w-full">
+						<button className="btn btn-primary btn-sm mt-4 w-full rounded">
+							Create Recipe
+						</button>
+					</Link>
 				</div>
 			)}
 		</div>

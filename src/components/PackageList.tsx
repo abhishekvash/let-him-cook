@@ -22,7 +22,7 @@ function Package({
 				isAdded ? "outline outline-1 outline-primary" : ""
 			}`}
 		>
-			<div className="mb-2 flex items-center justify-between">
+			<div className="mb-2 flex flex-wrap items-center justify-between">
 				<span className="text-2xl text-white">
 					{npmPackage.package.name}
 				</span>
@@ -33,14 +33,14 @@ function Package({
 			<p className="mb-3 text-sm font-light">
 				{npmPackage.package.description}
 			</p>
-			<div className="flex gap-4">
-				<div className="flex gap-1 text-[12px]">
+			<div className="flex flex-wrap gap-4">
+				<div className="flex w-full gap-1 text-[12px] md:w-auto">
 					<IconBrandNpm size={14} />
 					<a
 						href={npmPackage.package.links.npm}
 						target="_blank"
 						rel="noreferrer"
-						className="cursor-pointer font-semibold text-blue-400"
+						className="cursor-pointer break-all font-semibold text-blue-400"
 					>
 						{npmPackage.package.links.npm}
 					</a>
@@ -59,9 +59,9 @@ function Package({
 						%
 					</a>
 				</div>
-				<div className="ml-auto flex gap-2">
+				<div className="flex w-full flex-wrap gap-2 md:ml-auto md:w-auto">
 					<button
-						className="btn btn-primary btn-xs rounded font-bold"
+						className="btn btn-primary btn-xs w-full rounded font-bold md:w-auto"
 						onClick={() =>
 							changeRecipe({
 								type: PotActions.ADD_AS_DEPENDENCY,
@@ -72,7 +72,7 @@ function Package({
 						Add as dependency
 					</button>
 					<button
-						className="btn btn-primary btn-outline btn-xs rounded font-bold"
+						className="btn btn-primary btn-outline btn-xs w-full rounded font-bold md:w-auto"
 						onClick={() =>
 							changeRecipe({
 								type: PotActions.ADD_AS_DEV_DEPENDENCY,
@@ -96,7 +96,7 @@ export function PackageList({ packages }: { packages: SearchResult[] }) {
 	}
 
 	return (
-		<div className="flex max-h-[80vh] flex-col gap-4 overflow-y-scroll p-2">
+		<div className="flex flex-col gap-4 overflow-y-auto p-2 md:max-h-[79vh]">
 			{packages.map(npmPackage => {
 				return (
 					<Package

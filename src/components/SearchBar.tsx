@@ -27,7 +27,7 @@ export function SearchBar() {
 					value={searchString}
 					onChange={e => setSearchString(e.target.value)}
 					required
-					className="w-30 bg-transparent outline-none md:w-auto"
+					className="w-24 bg-transparent outline-none md:w-auto"
 				/>
 			</div>
 

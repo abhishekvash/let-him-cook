@@ -21,7 +21,7 @@ export function IngredientsList({
 					? "Dependencies"
 					: "Dev Dependencies"}
 			</div>
-			<div className="flex flex-col gap-2">
+			<div className="flex max-h-[20vh] flex-col gap-2 overflow-clip overflow-y-auto">
 				{dependencies.map(dep => (
 					<div
 						className="grid grid-cols-3 items-center gap-2"

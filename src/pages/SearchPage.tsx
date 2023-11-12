@@ -12,8 +12,8 @@ export function SearchPage() {
 	return (
 		<>
 			<Navbar />
-			<main className="grid grid-cols-6 gap-x-4 px-2 py-4">
-				<div className="col-span-4">
+			<main className="grid grid-cols-6 gap-4 px-2 py-4">
+				<div className="col-span-6 md:col-span-4">
 					<SearchBar />
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={data.packages}>
@@ -27,7 +27,7 @@ export function SearchPage() {
 						</Await>
 					</Suspense>
 				</div>
-				<div className="col-span-2">
+				<div className="col-span-6 md:col-span-2">
 					<Pot />
 				</div>
 			</main>
