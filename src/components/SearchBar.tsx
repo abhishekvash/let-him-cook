@@ -5,7 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 export function SearchBar({
 	shouldNavigate = false,
 }: {
-	shouldNavigate: boolean;
+	shouldNavigate?: boolean;
 }) {
 	const [searchParam, setSearchParam] = useSearchParams();
 	const [searchString, setSearchString] = useState<string>(
