@@ -1,4 +1,7 @@
-import { PotActions, PotContext } from "@/contexts/PotProvider";
+import {
+	IngredientActions,
+	IngredientContext,
+} from "@/contexts/IngredientsContext";
 import { IconBrandGoogleAnalytics, IconBrandNpm } from "@tabler/icons-react";
 import { SearchResult } from "query-registry";
 import { useCallback, useContext } from "react";
@@ -10,7 +13,7 @@ function Package({
 	npmPackage: SearchResult;
 	isAdded: boolean;
 }) {
-	const { changeRecipe } = useContext(PotContext)!;
+	const { changeIngredients } = useContext(IngredientContext)!;
 
 	const convertToPercentage = useCallback((score: number) => {
 		return (score * 100).toFixed(0);
@@ -63,8 +66,8 @@ function Package({
 					<button
 						className="btn btn-primary btn-xs w-full rounded font-bold md:w-auto"
 						onClick={() =>
-							changeRecipe({
-								type: PotActions.ADD_AS_DEPENDENCY,
+							changeIngredients({
+								type: IngredientActions.ADD_AS_DEPENDENCY,
 								payload: npmPackage.package.name,
 							})
 						}
@@ -74,8 +77,8 @@ function Package({
 					<button
 						className="btn btn-primary btn-outline btn-xs w-full rounded font-bold md:w-auto"
 						onClick={() =>
-							changeRecipe({
-								type: PotActions.ADD_AS_DEV_DEPENDENCY,
+							changeIngredients({
+								type: IngredientActions.ADD_AS_DEV_DEPENDENCY,
 								payload: npmPackage.package.name,
 							})
 						}
@@ -89,13 +92,16 @@ function Package({
 }
 
 export function PackageList({ packages }: { packages: SearchResult[] }) {
-	const { pot } = useContext(PotContext)!;
+	const { ingredients } = useContext(IngredientContext)!;
 
 	const isAdded = useCallback(
 		(name: string) => {
-			return pot.dependencies.has(name) || pot.devDependencies.has(name);
+			return (
+				ingredients.dependencies.has(name) ||
+				ingredients.devDependencies.has(name)
+			);
 		},
-		[pot],
+		[ingredients],
 	);
 
 	return (

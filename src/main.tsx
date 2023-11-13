@@ -5,12 +5,12 @@ import { router } from "./router";
 
 import "./index.css";
 import "@fontsource-variable/raleway";
-import { PotProvider } from "./contexts/PotProvider";
+import { IngredientsProvider } from "./contexts/IngredientsContext";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
-		<PotProvider>
+		<IngredientsProvider>
 			<RouterProvider router={router} />
-		</PotProvider>
+		</IngredientsProvider>
 	</React.StrictMode>,
 );

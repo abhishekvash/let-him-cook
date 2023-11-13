@@ -1,4 +1,7 @@
-import { PotActions, PotContext } from "@/contexts/PotProvider";
+import {
+	IngredientActions,
+	IngredientContext,
+} from "@/contexts/IngredientsContext";
 import { IconNotebook } from "@tabler/icons-react";
 import { useCallback, useContext } from "react";
 import { IngredientsList } from "./IngredientsList";
@@ -6,9 +9,9 @@ import { Link } from "react-router-dom";
 
 export function Pot() {
 	const {
-		pot: { dependencies: d, devDependencies: dd },
-		changeRecipe,
-	} = useContext(PotContext)!;
+		ingredients: { dependencies: d, devDependencies: dd },
+		changeIngredients,
+	} = useContext(IngredientContext)!;
 
 	// Ideal to use useMemo here, but React apparently can't track when a Set changes so
 	const dependencies = Array.from(d);
@@ -17,22 +20,22 @@ export function Pot() {
 
 	const removeDependency = useCallback(
 		(name: string) => {
-			changeRecipe({
-				type: PotActions.REMOVE_FROM_DEPENDENCY,
+			changeIngredients({
+				type: IngredientActions.REMOVE_FROM_DEPENDENCY,
 				payload: name,
 			});
 		},
-		[changeRecipe],
+		[changeIngredients],
 	);
 
 	const removeDevDependency = useCallback(
 		(name: string) => {
-			changeRecipe({
-				type: PotActions.REMOVE_FROM_DEV_DEPENDENCY,
+			changeIngredients({
+				type: IngredientActions.REMOVE_FROM_DEV_DEPENDENCY,
 				payload: name,
 			});
 		},
-		[changeRecipe],
+		[changeIngredients],
 	);
 
 	return (

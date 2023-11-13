@@ -2,6 +2,7 @@ import { createBrowserRouter, defer } from "react-router-dom";
 
 import { SearchPage } from "./pages/SearchPage";
 import { fetchPackages } from "./api/packages";
+import { CreateRecipe } from "./pages/CreateRecipe";
 
 export const router = createBrowserRouter([
 	{
@@ -15,5 +16,9 @@ export const router = createBrowserRouter([
 				packages,
 			});
 		},
+	},
+	{
+		path: "/create-recipe",
+		element: <CreateRecipe />,
 	},
 ]);
