@@ -7,7 +7,7 @@ import { useCallback, useContext } from "react";
 import { IngredientsList } from "./IngredientsList";
 import { Link } from "react-router-dom";
 
-export function Pot() {
+export function Ingredients() {
 	const {
 		ingredients: { dependencies: d, devDependencies: dd },
 		changeIngredients,
@@ -64,7 +64,7 @@ export function Pot() {
 					)}
 					<Link to="/create-recipe" className="w-full">
 						<button className="btn btn-primary btn-sm mt-4 w-full rounded">
-							Create Recipe
+							Continue
 						</button>
 					</Link>
 				</div>

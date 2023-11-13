@@ -1,6 +1,5 @@
-import { Navbar } from "@/components/Navbar";
 import { PackageList } from "@/components/PackageList";
-import { Pot } from "@/components/Pot";
+import { Ingredients } from "@/components/Ingredients";
 import { SearchBar } from "@/components/SearchBar";
 import { SearchResult } from "query-registry";
 import { Suspense } from "react";
@@ -11,9 +10,8 @@ export function SearchPage() {
 
 	return (
 		<>
-			<Navbar />
-			<main className="grid grid-cols-6 gap-4 px-2 py-4">
-				<div className="col-span-6 md:col-span-4">
+			<div className="grid grid-cols-3 gap-4">
+				<div className="col-span-3 md:col-span-2">
 					<SearchBar />
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={data.packages}>
@@ -27,10 +25,10 @@ export function SearchPage() {
 						</Await>
 					</Suspense>
 				</div>
-				<div className="col-span-6 md:col-span-2">
-					<Pot />
+				<div className="col-span-3 md:col-span-1">
+					<Ingredients />
 				</div>
-			</main>
+			</div>
 		</>
 	);
 }

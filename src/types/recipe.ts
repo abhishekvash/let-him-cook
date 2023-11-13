@@ -1,12 +1,10 @@
 export type Recipe = {
 	name: string;
 	description: string;
-	dependencies: string[];
-	devDependencies: string[];
-	files?: File[];
+	files: Record<string, string>;
 };
 
-export type File = {
-	name: string;
-	content: string;
+export type RecipeWithIngredients = Recipe & {
+	dependencies: string[];
+	devDependencies: string[];
 };

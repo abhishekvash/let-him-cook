@@ -13,6 +13,7 @@
 	"dependencies": {
 		"@fontsource-variable/raleway": "^5.0.16",
 		"@tabler/icons-react": "^2.40.0",
+		"highlight.js": "^11.9.0",
 		"localforage": "^1.10.0",
 		"query-registry": "^2.6.0",
 		"react": "^18.2.0",
