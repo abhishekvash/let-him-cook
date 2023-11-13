@@ -1,6 +1,6 @@
 import { PotActions, PotContext } from "@/contexts/PotProvider";
 import { IconNotebook } from "@tabler/icons-react";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { IngredientsList } from "./IngredientsList";
 import { Link } from "react-router-dom";
 
@@ -15,19 +15,25 @@ export function Pot() {
 
 	const devDependencies = Array.from(dd);
 
-	function removeDependency(name: string) {
-		changeRecipe({
-			type: PotActions.REMOVE_FROM_DEPENDENCY,
-			payload: name,
-		});
-	}
+	const removeDependency = useCallback(
+		(name: string) => {
+			changeRecipe({
+				type: PotActions.REMOVE_FROM_DEPENDENCY,
+				payload: name,
+			});
+		},
+		[changeRecipe],
+	);
 
-	function removeDevDependency(name: string) {
-		changeRecipe({
-			type: PotActions.REMOVE_FROM_DEV_DEPENDENCY,
-			payload: name,
-		});
-	}
+	const removeDevDependency = useCallback(
+		(name: string) => {
+			changeRecipe({
+				type: PotActions.REMOVE_FROM_DEV_DEPENDENCY,
+				payload: name,
+			});
+		},
+		[changeRecipe],
+	);
 
 	return (
 		<div className="flex w-full flex-col items-center">

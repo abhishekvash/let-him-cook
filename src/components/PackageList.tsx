@@ -1,7 +1,7 @@
 import { PotActions, PotContext } from "@/contexts/PotProvider";
 import { IconBrandGoogleAnalytics, IconBrandNpm } from "@tabler/icons-react";
 import { SearchResult } from "query-registry";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 
 function Package({
 	npmPackage,
@@ -12,9 +12,9 @@ function Package({
 }) {
 	const { changeRecipe } = useContext(PotContext)!;
 
-	function convertToPercentage(score: number) {
+	const convertToPercentage = useCallback((score: number) => {
 		return (score * 100).toFixed(0);
-	}
+	}, []);
 
 	return (
 		<div
@@ -91,9 +91,12 @@ function Package({
 export function PackageList({ packages }: { packages: SearchResult[] }) {
 	const { pot } = useContext(PotContext)!;
 
-	function isAdded(name: string) {
-		return pot.dependencies.has(name) || pot.devDependencies.has(name);
-	}
+	const isAdded = useCallback(
+		(name: string) => {
+			return pot.dependencies.has(name) || pot.devDependencies.has(name);
+		},
+		[pot],
+	);
 
 	return (
 		<div className="flex flex-col gap-4 overflow-y-auto p-2 md:max-h-[79vh]">
