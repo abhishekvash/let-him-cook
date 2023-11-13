@@ -6,12 +6,17 @@ import { DefaultLayout } from "@/layouts/DefaultLayout";
 
 import { SearchPage } from "@/pages/SearchPage";
 import { CreateRecipe } from "@/pages/CreateRecipe";
+import { HomePage } from "@/pages/HomePage";
 
 export const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <DefaultLayout />,
 		children: [
+			{
+				path: "",
+				element: <HomePage />,
+			},
 			{
 				path: "search",
 				element: <SearchPage />,

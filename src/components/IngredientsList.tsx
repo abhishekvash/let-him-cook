@@ -11,7 +11,7 @@ export function IngredientsList({
 }) {
 	return (
 		<div className="w-full">
-			<div className="mb-4 flex items-center gap-2 border-b border-white pb-2 text-2xl font-semibold">
+			<div className="mb-4 flex items-center gap-2 border-b border-white pb-2 text-xl font-semibold lg:text-2xl">
 				{typeOfList === "dependencies" ? (
 					<IconBox />
 				) : (

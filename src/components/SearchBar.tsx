@@ -1,16 +1,26 @@
 import { IconSearch } from "@tabler/icons-react";
 import { FormEvent, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-export function SearchBar() {
+export function SearchBar({
+	shouldNavigate = false,
+}: {
+	shouldNavigate: boolean;
+}) {
 	const [searchParam, setSearchParam] = useSearchParams();
 	const [searchString, setSearchString] = useState<string>(
 		searchParam.get("q") ?? "",
 	);
 
+	const navigate = useNavigate();
+
 	async function search(e: FormEvent) {
 		e.preventDefault();
 		if (!searchString) return;
+		if (shouldNavigate) {
+			navigate(`/search?q=${searchString}`);
+			return;
+		}
 		setSearchParam(`q=${searchString}`);
 	}
 
@@ -28,7 +38,7 @@ export function SearchBar() {
 					onChange={e => setSearchString(e.target.value)}
 					required
 					autoFocus
-					className="w-24 bg-transparent outline-none md:w-auto"
+					className="w-full bg-transparent outline-none md:w-auto"
 				/>
 			</div>
 
