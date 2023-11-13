@@ -9,7 +9,9 @@ export function CommandPreview({
 		<div className="bg-zinc-800 p-4">
 			<p className="font-mono">
 				npm install {Array.from(dependencies).join(" ")}{" "}
-				{<> -D {Array.from(devDependencies).join(" ")}</>}
+				{devDependencies.size > 0 && (
+					<> -D {Array.from(devDependencies).join(" ")}</>
+				)}
 			</p>
 		</div>
 	);

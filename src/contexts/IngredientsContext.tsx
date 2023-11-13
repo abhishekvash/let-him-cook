@@ -8,10 +8,14 @@ export const IngredientActions = {
 	CLEAR_ALL_DEPENDENCIES: "clearAllDependencies",
 } as const;
 
-type IngredientAction = {
-	type: (typeof IngredientActions)[keyof typeof IngredientActions];
-	payload: string;
-};
+type IngredientAction =
+	| {
+			type: (typeof IngredientActions)[keyof typeof IngredientActions];
+			payload: string;
+	  }
+	| {
+			type: "clearAllDependencies";
+	  };
 
 type Ingredients = {
 	dependencies: Set<string>;

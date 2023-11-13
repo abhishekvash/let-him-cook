@@ -7,6 +7,7 @@ export const RecipeActions = {
 	ADD_FILE: "addFile",
 	UPDATE_FILE: "updateFile",
 	REMOVE_FILE: "removeFile",
+	CLEAR_RECIPE: "clearRecipe",
 } as const;
 
 type RecipeAction =
@@ -21,6 +22,9 @@ type RecipeAction =
 	| {
 			type: "addFile" | "updateFile" | "removeFile";
 			payload: Record<string, string>;
+	  }
+	| {
+			type: "clearRecipe";
 	  };
 
 export const RecipeContext = createContext<{
@@ -58,6 +62,12 @@ function reducer(state: Recipe, action: RecipeAction) {
 			}
 			return {
 				...state,
+			};
+		case RecipeActions.CLEAR_RECIPE:
+			return {
+				name: "",
+				description: "",
+				files: {},
 			};
 	}
 }

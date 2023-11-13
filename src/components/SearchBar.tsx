@@ -27,6 +27,7 @@ export function SearchBar() {
 					value={searchString}
 					onChange={e => setSearchString(e.target.value)}
 					required
+					autoFocus
 					className="w-24 bg-transparent outline-none md:w-auto"
 				/>
 			</div>

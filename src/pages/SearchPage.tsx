@@ -13,17 +13,19 @@ export function SearchPage() {
 			<div className="grid grid-cols-3 gap-4">
 				<div className="col-span-3 md:col-span-2">
 					<SearchBar />
-					<Suspense fallback={<div>Loading...</div>}>
-						<Await resolve={data.packages}>
-							{(packages: SearchResult[]) =>
-								packages.length > 0 ? (
-									<PackageList packages={packages} />
-								) : (
-									<div>No results</div>
-								)
-							}
-						</Await>
-					</Suspense>
+					{data && (
+						<Suspense fallback={<div>Loading...</div>}>
+							<Await resolve={data.packages}>
+								{(packages: SearchResult[]) =>
+									packages.length > 0 ? (
+										<PackageList packages={packages} />
+									) : (
+										<div>No results</div>
+									)
+								}
+							</Await>
+						</Suspense>
+					)}
 				</div>
 				<div className="col-span-3 md:col-span-1">
 					<Ingredients />
