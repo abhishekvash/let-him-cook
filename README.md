@@ -18,7 +18,7 @@ or
 npm install
 ```
 
-> :warning: Important: Since the app is developed using [bun](https://bun.run/), it is recommended to use [bun](https://bun.run/) for installation. Due to the lack of package-lock.json in the repository, npm clean install will not work.
+> :warning: Important: Since the app is developed using [bun](https://bun.sh/), it is recommended to use [bun](https://bun.sh/) for installation. Due to the lack of package-lock.json in the repository, npm clean install will not work.
 
 ## Usage
 
