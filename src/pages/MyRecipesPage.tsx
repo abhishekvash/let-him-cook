@@ -11,7 +11,7 @@ export function MyRecipesPage() {
 			<h1 className="mb-6 border-b pb-2 text-2xl font-semibold">
 				Recipes
 			</h1>
-			{data && (
+			{data ? (
 				<Suspense fallback={<div>Loading...</div>}>
 					<Await resolve={data.recipes}>
 						{(recipes: RecipeWithIngredients[]) =>
@@ -42,6 +42,8 @@ export function MyRecipesPage() {
 						}
 					</Await>
 				</Suspense>
+			) : (
+				<p>No Data</p>
 			)}
 		</div>
 	);

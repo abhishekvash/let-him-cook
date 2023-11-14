@@ -8,7 +8,7 @@ export function RecipeDetailsPage() {
 
 	return (
 		<>
-			{recipe && (
+			{recipe ? (
 				<div className="grid gap-4">
 					<h1 className="mb-2 border-b pb-2 text-2xl font-semibold">
 						{recipe.name}
@@ -50,6 +50,8 @@ export function RecipeDetailsPage() {
 						)}
 					</div>
 				</div>
+			) : (
+				<p>No Data</p>
 			)}
 		</>
 	);

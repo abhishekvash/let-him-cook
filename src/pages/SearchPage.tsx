@@ -12,7 +12,7 @@ export function SearchPage() {
 		<div className="grid grid-cols-3 gap-4">
 			<div className="col-span-3 md:col-span-2">
 				<SearchBar />
-				{data && (
+				{data ? (
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={data.packages}>
 							{(packages: SearchResult[]) =>
@@ -24,6 +24,8 @@ export function SearchPage() {
 							}
 						</Await>
 					</Suspense>
+				) : (
+					<p>No Data</p>
 				)}
 			</div>
 			<div className="col-span-3 md:col-span-1">

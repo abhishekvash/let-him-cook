@@ -8,16 +8,19 @@ export function HomePage() {
 
 	useEffect(() => {
 		interval.current = setInterval(() => {
-			setStepCount(stepCount => stepCount + 1);
 			if (stepCount === 4) {
 				clearInterval(interval.current);
+				return;
 			}
+			setStepCount(stepCount => stepCount + 1);
 		}, 1000);
 
 		return () => {
 			clearInterval(interval.current);
 		};
-	});
+		// This is to ensure that the interval function only runs once since it has no dependencies
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className="flex flex-col items-center justify-center md:h-[80vh]">
