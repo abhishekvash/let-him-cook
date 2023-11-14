@@ -13,7 +13,7 @@ export function CodeBlock({
 		hljs.highlightAll();
 	}, []);
 	return (
-		<div>
+		<div className="max-w-[95vw] overflow-x-auto">
 			<p className="mb-1 text-sm font-light">{filename}</p>
 			<pre>
 				<code className="hljs">{contents}</code>
