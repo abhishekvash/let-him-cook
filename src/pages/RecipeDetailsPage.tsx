@@ -17,7 +17,11 @@ export function RecipeDetailsPage() {
 						<h2 className="mb-1 text-xl font-semibold">
 							Description
 						</h2>
-						<p>{recipe.description}</p>
+						<p>
+							{recipe.description
+								? recipe.description
+								: "No description"}
+						</p>
 					</div>
 					<div>
 						<h2 className="mb-1 text-xl font-semibold">Command</h2>
@@ -31,7 +35,7 @@ export function RecipeDetailsPage() {
 						<h2 className="mb-1 text-xl font-semibold">
 							Config Files
 						</h2>
-						{Object.keys(recipe.files).length > 0 && (
+						{Object.keys(recipe.files).length > 0 ? (
 							<>
 								{Object.keys(recipe.files).map(file => (
 									<CodeBlock
@@ -41,6 +45,8 @@ export function RecipeDetailsPage() {
 									/>
 								))}
 							</>
+						) : (
+							<p>No config files</p>
 						)}
 					</div>
 				</div>
