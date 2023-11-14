@@ -1,14 +1,31 @@
+import { Suspense, lazy } from "react";
 import { createBrowserRouter, defer } from "react-router-dom";
 
 import { fetchPackages } from "@/api/packages";
 
 import { DefaultLayout } from "@/layouts/DefaultLayout";
-
-import { SearchPage } from "@/pages/SearchPage";
-import { CreateRecipePage } from "@/pages/CreateRecipePage";
 import { HomePage } from "@/pages/HomePage";
-import { MyRecipesPage } from "./pages/MyRecipesPage";
-import { RecipeDetailsPage } from "./pages/RecipeDetailsPage";
+// Lazy loading the page components (looks complicated, since the components files have named exports, much cleaner if they are default exports)
+const SearchPage = lazy(() =>
+	import("@/pages/SearchPage").then(module => ({
+		default: module.SearchPage,
+	})),
+);
+const CreateRecipePage = lazy(() =>
+	import("@/pages/CreateRecipePage").then(module => ({
+		default: module.CreateRecipePage,
+	})),
+);
+const MyRecipesPage = lazy(() =>
+	import("./pages/MyRecipesPage").then(module => ({
+		default: module.MyRecipesPage,
+	})),
+);
+const RecipeDetailsPage = lazy(() =>
+	import("./pages/RecipeDetailsPage").then(module => ({
+		default: module.RecipeDetailsPage,
+	})),
+);
 
 import {
 	getAllRecipesFromStorage,
@@ -26,7 +43,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "search",
-				element: <SearchPage />,
+				element: (
+					<Suspense fallback={<div>Loading...</div>}>
+						<SearchPage />
+					</Suspense>
+				),
 				loader: async ({ request }) => {
 					const searchTerm = new URL(request.url).searchParams.get(
 						"q",
@@ -40,11 +61,19 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "create-recipe",
-				element: <CreateRecipePage />,
+				element: (
+					<Suspense fallback={<div>Loading...</div>}>
+						<CreateRecipePage />
+					</Suspense>
+				),
 			},
 			{
 				path: "recipes",
-				element: <MyRecipesPage />,
+				element: (
+					<Suspense fallback={<div>Loading...</div>}>
+						<MyRecipesPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const recipes = getAllRecipesFromStorage();
 					return defer({
@@ -54,7 +83,12 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "recipes/:recipeName",
-				element: <RecipeDetailsPage />,
+
+				element: (
+					<Suspense fallback={<div>Loading...</div>}>
+						<RecipeDetailsPage />
+					</Suspense>
+				),
 				loader: async ({ params: { recipeName } }) => {
 					if (!recipeName) return null;
 					const recipe = await getRecipeFromStorage(recipeName);
