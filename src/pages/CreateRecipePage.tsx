@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export function CreateRecipe() {
+export function CreateRecipePage() {
 	const {
 		ingredients: { dependencies, devDependencies },
 		changeIngredients,
@@ -70,8 +70,8 @@ export function CreateRecipe() {
 						Save recipe
 					</button>
 					<button
-						className="btn btn-primary btn-outline btn-sm mt-4 w-full rounded"
-						onClick={() => navigate("/search")}
+						className="btn btn-outline btn-primary btn-sm mt-4 w-full rounded"
+						onClick={() => navigate("/recipes")}
 					>
 						Add more dependencies
 					</button>

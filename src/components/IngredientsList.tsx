@@ -31,7 +31,7 @@ export function IngredientsList({
 							{dep}
 						</p>
 						<button
-							className="btn btn-primary btn-outline btn-xs rounded font-bold"
+							className="btn btn-outline btn-primary btn-xs rounded font-bold"
 							onClick={() => removeFn(dep)}
 						>
 							Remove

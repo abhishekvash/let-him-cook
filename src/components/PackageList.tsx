@@ -75,7 +75,7 @@ function Package({
 						Add as dependency
 					</button>
 					<button
-						className="btn btn-primary btn-outline btn-xs w-full rounded font-bold md:w-auto"
+						className="btn btn-outline btn-primary btn-xs w-full rounded font-bold md:w-auto"
 						onClick={() =>
 							changeIngredients({
 								type: IngredientActions.ADD_AS_DEV_DEPENDENCY,

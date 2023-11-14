@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 localforage.config({
 	driver: localforage.INDEXEDDB,
 	name: "let-him-cook",
-	version: 0.1,
+	version: 2,
 	size: 49807360, // Size of database, in bytes.
 	storeName: "recipes",
 	description: "Store JS recipes",

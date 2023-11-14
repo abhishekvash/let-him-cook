@@ -27,7 +27,7 @@ export function AddConfigFile() {
 	return (
 		<>
 			<button
-				className="btn btn-primary btn-outline btn-sm mb-4 rounded text-2xl"
+				className="btn btn-outline btn-primary btn-sm mb-4 rounded text-2xl"
 				onClick={() => dialog.current?.showModal()}
 			>
 				+
@@ -72,7 +72,7 @@ export function AddConfigFile() {
 							</button>
 							<button
 								value="cancel"
-								className="btn btn-primary btn-outline btn-sm rounded"
+								className="btn btn-outline btn-primary btn-sm rounded"
 							>
 								Close
 							</button>

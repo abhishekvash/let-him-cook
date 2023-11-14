@@ -1,5 +1,5 @@
 import localforage from "localforage";
-import { Recipe } from "@/types/recipe";
+import { Recipe, RecipeWithIngredients } from "@/types/recipe";
 
 export async function saveRecipeToStorage(
 	recipe: Recipe,
@@ -22,4 +22,36 @@ export async function saveRecipeToStorage(
 	});
 
 	return true;
+}
+
+export async function getAllRecipesFromStorage() {
+	const recipes: RecipeWithIngredients[] = [];
+
+	await localforage.iterate(
+		(
+			value: {
+				description: string;
+				dependencies: string[];
+				devDependencies: string[];
+				files: Record<string, string>;
+			},
+			key,
+		) => {
+			recipes.push({
+				name: key,
+				...value,
+			});
+		},
+	);
+
+	return recipes;
+}
+
+export async function getRecipeFromStorage(name: string) {
+	const recipe: Record<string, string> = (await localforage.getItem(name))!;
+
+	return {
+		name: name,
+		...recipe,
+	} as RecipeWithIngredients;
 }

@@ -13,6 +13,11 @@ export function Navbar() {
 						/>
 					</Link>
 				</div>
+				<div>
+					<Link to="/recipes" className="text-white">
+						My Recipes
+					</Link>
+				</div>
 			</nav>
 		</>
 	);
